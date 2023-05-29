@@ -15,6 +15,7 @@
 		CDEE854D2A24BC7D00C90EF5 /* success.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CDEE854B2A24BC7D00C90EF5 /* success.m4a */; };
 		CDEE85532A24C0D100C90EF5 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE85522A24C0D100C90EF5 /* Onboarding.swift */; };
 		CDEE85552A24C0E300C90EF5 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE85542A24C0E300C90EF5 /* Home.swift */; };
+		CDEE85572A24DD1C00C90EF5 /* CircleGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE85562A24DD1C00C90EF5 /* CircleGroupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		CDEE854B2A24BC7D00C90EF5 /* success.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = success.m4a; sourceTree = "<group>"; };
 		CDEE85522A24C0D100C90EF5 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		CDEE85542A24C0E300C90EF5 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		CDEE85562A24DD1C00C90EF5 /* CircleGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleGroupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		CDEE85512A24BFA800C90EF5 /* component */ = {
 			isa = PBXGroup;
 			children = (
+				CDEE85562A24DD1C00C90EF5 /* CircleGroupView.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				CDEE853F2A24BADD00C90EF5 /* ContentView.swift in Sources */,
 				CDEE85552A24C0E300C90EF5 /* Home.swift in Sources */,
 				CDEE853D2A24BADD00C90EF5 /* Care_LoveApp.swift in Sources */,
+				CDEE85572A24DD1C00C90EF5 /* CircleGroupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

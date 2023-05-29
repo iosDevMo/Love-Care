@@ -15,10 +15,12 @@ struct Home: View {
     
     var body: some View {
         VStack{
+            Text("Home")
+            
             Button {
                 isOnboarding.toggle()
             } label: {
-              Text("Back")
+              Text("Restart")
                     .font(.largeTitle)
             }
 
