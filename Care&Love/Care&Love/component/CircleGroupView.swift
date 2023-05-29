@@ -10,6 +10,8 @@ import SwiftUI
 struct CircleGroupView: View {
     //:property
     var circleGroupColor : Color = .red
+    @State var isAnimation : Bool = false
+    
     //:body
     var body: some View {
         ZStack{
@@ -20,6 +22,11 @@ struct CircleGroupView: View {
                 .stroke(circleGroupColor.opacity(0.2), lineWidth: 80)
                 .frame(width: 260, height: 260, alignment: .center)
         }//:Zstack
+        .scaleEffect(isAnimation ? 1:0.5)
+        .animation(.easeOut(duration: 1), value: isAnimation)
+        .onAppear{
+            isAnimation.toggle()
+        }
         
     }
 }

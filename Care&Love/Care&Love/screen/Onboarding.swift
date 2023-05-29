@@ -10,7 +10,10 @@ import SwiftUI
 struct Onboarding: View {
     //: property
     @AppStorage("isOnboarding") var isOnboarding : Bool = true
-    
+    @State var isanimation : Bool = false
+    @State var imageOffset : CGSize = (CGSize(width: 0.0, height: 0.0))
+    @State var buttonOffset : CGFloat = 0.0
+    @State var buttonWidth : Double = UIScreen.main.bounds.width - 80
     //:body
     var body: some View {
         ZStack{
@@ -32,19 +35,37 @@ struct Onboarding: View {
                         .padding(.horizontal, 10)
                         .multilineTextAlignment(.center)
                 }//:Vstack
-                
+                .offset(y: isanimation ? 0 : -80)
+                .animation(.easeOut(duration: 1), value: isanimation)
                 //MARK: - Center
                 ZStack{
                     CircleGroupView(circleGroupColor: .white)
+                        .offset(x: (imageOffset.width) * -1)
+                        .blur(radius: abs(imageOffset.width)/5, opaque: false)
                     Image("happy-pregnant")
                         .resizable()
                         .scaledToFit()
+                        .offset(x: imageOffset.width, y: 0)
+                        .rotationEffect(.degrees(imageOffset.width/15))
                         .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.5), radius: 8, x: 3, y: 30)
                         .overlay(
                             Image(systemName: "arrow.left.and.right.circle")
                                 .font(.system(size: 40, weight: .ultraLight, design: .rounded))
                                 .foregroundColor(.white)
+                                .opacity((imageOffset.width)>0 ? 0 : 1)
                             ,alignment: .bottom
+                        )
+                        .frame(width: 300)
+                        .gesture(DragGesture()
+                            .onChanged({ gesture in
+                                if abs(gesture.translation.width) >= 150 {
+                                    imageOffset = gesture.translation                                }
+                            })
+                                .onEnded({ _ in
+                                    withAnimation(.easeOut(duration: 0.5)) {
+                                        imageOffset = .zero
+                                    }
+                                })
                         )
                 }//:Ztack
                 //MARK: - Footer
@@ -79,14 +100,20 @@ struct Onboarding: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: 25, weight: .bold, design: .rounded))
                         }//:Zstack
+                        offset(x: buttonOffset)
+                        .gesture(DragGesture())
                         Spacer()
                     }//:Hstack (End of Draggable circle)
                 }//:Zstack (End of Footer)
                 .frame(height: 80)
                 .padding(.horizontal, 40)
+                .offset(y: isanimation ? 0 : 80)
+                .animation(.easeOut(duration: 1), value: isanimation)
             }//Vstack
         }//:Zstack
-        
+        .onAppear{
+            isanimation.toggle()
+        }
     }
 }
 //: preview
