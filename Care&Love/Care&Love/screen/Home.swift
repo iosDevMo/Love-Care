@@ -9,22 +9,49 @@ import SwiftUI
 
 struct Home: View {
     //: property
-    
     @AppStorage("isOnboarding") var isOnboarding : Bool = false
+    @State var isAnimation : Bool = false
     //: body
     
     var body: some View {
-        VStack{
-            Text("Home")
+        VStack(alignment: .center, spacing: 30){
+            //MARK: - Header
+            ZStack{
+                CircleGroupView(circleGroupColor: .gray)
+                Image("baby-boy")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 300, alignment: .center)
+                    .offset(y: isAnimation ? 30 : -30)
+                    .animation(.easeOut(duration: 2.5).repeatForever(autoreverses: true), value: isAnimation)
+            }//:Ztack
+           
+            //MARK: - Center
+            Text("Children")
+                .padding()
+                .font(.title3)
+                .foregroundColor(.gray)
             
+            //MARK: - Footer
             Button {
                 isOnboarding.toggle()
             } label: {
-              Text("Restart")
-                    .font(.largeTitle)
+                Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                    .imageScale(.large)
+                Text("Restart")
+                    .font(.system(size: 30, design: .rounded))
+                    .fontWeight(.bold)
             }
-
+            .buttonStyle(.borderedProminent)
+            .buttonBorderShape(.capsule)
+            
         }//Vstack
+        .onAppear{
+            DispatchQueue.main.asyncAfter(deadline: .now()+2){
+                isAnimation.toggle()
+            }
+            
+        }
     }
 }
 //: preview

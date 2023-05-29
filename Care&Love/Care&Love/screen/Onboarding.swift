@@ -23,7 +23,7 @@ struct Onboarding: View {
             VStack{
                 //MARK: - Header
                 VStack{
-                    Text("Care")
+                    Text(abs(imageOffset.width)>0 ? "Love" : "Care")
                         .font(.system(size: 60))
                         .fontWeight(.heavy)
                         .foregroundColor(.white)
@@ -85,7 +85,7 @@ struct Onboarding: View {
                     HStack{
                         Capsule()
                             .fill(Color("colorRed"))
-                            .frame(width: 80)
+                            .frame(width: 80 + buttonOffset)
                         Spacer()
                     }//:Hstack (End of Capsoule Dynamic)
                     //:4-Draggable circle
@@ -100,10 +100,28 @@ struct Onboarding: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: 25, weight: .bold, design: .rounded))
                         }//:Zstack
-                        offset(x: buttonOffset)
-                        .gesture(DragGesture())
+                        .frame(width: 80, alignment: .center)
+                        .offset(x: buttonOffset)
+                            .gesture(DragGesture()
+                                .onChanged({ gesture in
+                                    if (gesture.translation.width >= 0.0) && (buttonOffset <= buttonWidth - 80){
+                                        buttonOffset = gesture.translation.width
+                                    }
+                                })
+                                    .onEnded({ _ in
+                                        withAnimation(.easeOut(duration: 0.5)){
+                                            if buttonOffset >= buttonWidth/2 {
+                                                isOnboarding = false
+                                            }else{
+                                                buttonOffset = 0
+                                            }
+                                        }
+                                        
+                                    })
+                        )
                         Spacer()
                     }//:Hstack (End of Draggable circle)
+                    
                 }//:Zstack (End of Footer)
                 .frame(height: 80)
                 .padding(.horizontal, 40)
