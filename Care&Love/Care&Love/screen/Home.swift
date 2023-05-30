@@ -11,8 +11,8 @@ struct Home: View {
     //: property
     @AppStorage("isOnboarding") var isOnboarding : Bool = false
     @State var isAnimation : Bool = false
+    let feedBack = UINotificationFeedbackGenerator()
     //: body
-    
     var body: some View {
         VStack(alignment: .center, spacing: 30){
             //MARK: - Header
@@ -36,6 +36,7 @@ struct Home: View {
             Button {
                 isOnboarding.toggle()
                 playSound(soundFile: "success", soundType: "m4a")
+                feedBack.notificationOccurred(.success)
             } label: {
                 Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
                     .imageScale(.large)
