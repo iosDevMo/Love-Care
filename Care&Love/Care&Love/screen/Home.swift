@@ -35,6 +35,7 @@ struct Home: View {
             //MARK: - Footer
             Button {
                 isOnboarding.toggle()
+                playSound(soundFile: "success", soundType: "m4a")
             } label: {
                 Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
                     .imageScale(.large)

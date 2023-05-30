@@ -47,6 +47,8 @@ struct Onboarding: View {
                         .scaledToFit()
                         .offset(x: imageOffset.width, y: 0)
                         .rotationEffect(.degrees(imageOffset.width/15))
+                        .scaleEffect(isanimation ? 1 : 0.8)
+                        .animation(.easeOut(duration: 0.5), value: isanimation)
                         .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.5), radius: 8, x: 3, y: 30)
                         .overlay(
                             Image(systemName: "arrow.left.and.right.circle")
@@ -112,6 +114,7 @@ struct Onboarding: View {
                                         withAnimation(.easeOut(duration: 0.5)){
                                             if buttonOffset >= buttonWidth/2 {
                                                 isOnboarding = false
+                                                playSound(soundFile: "chimeup", soundType: "mp3")
                                             }else{
                                                 buttonOffset = 0
                                             }
